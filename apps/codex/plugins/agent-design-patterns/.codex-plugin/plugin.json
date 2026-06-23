@@ -1,0 +1,37 @@
+{
+  "name": "agent-design-patterns",
+  "version": "0.1.0",
+  "description": "Full local copy of huangjia2019/agent-design-patterns packaged for Codex task preflight calibration and pattern lookup.",
+  "author": {
+    "name": "danzai"
+  },
+  "homepage": "https://github.com/huangjia2019/agent-design-patterns",
+  "repository": "https://github.com/huangjia2019/agent-design-patterns",
+  "license": "MIT",
+  "keywords": [
+    "agent",
+    "design-patterns",
+    "codex",
+    "workflow",
+    "calibration"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Agent Design Patterns",
+    "shortDescription": "Use ADPS patterns before and during Codex tasks.",
+    "longDescription": "Packages the full huangjia2019/agent-design-patterns repository locally and adds a Codex skill for task preflight calibration, pattern selection, and repository navigation.",
+    "developerName": "Personal",
+    "category": "Productivity",
+    "capabilities": [
+      "Reference",
+      "Workflow"
+    ],
+    "websiteURL": "https://github.com/huangjia2019/agent-design-patterns",
+    "defaultPrompt": [
+      "Use ADPS to calibrate this task first.",
+      "Pick agent patterns for this workflow.",
+      "Explain which ADPS pattern applies here."
+    ],
+    "brandColor": "#2563EB"
+  }
+}

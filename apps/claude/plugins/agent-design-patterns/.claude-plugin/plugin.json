@@ -1,0 +1,11 @@
+{
+  "name": "agent-design-patterns",
+  "version": "0.1.0",
+  "description": "Full local copy of huangjia2019/agent-design-patterns packaged for Claude Code task preflight calibration and pattern lookup.",
+  "author": {
+    "name": "danzai"
+  },
+  "skills": [
+    "./skills/adps-task-calibration"
+  ]
+}

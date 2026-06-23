@@ -1,0 +1,20 @@
+{
+  "name": "agent-design-patterns",
+  "interface": {
+    "displayName": "Agent Design Patterns"
+  },
+  "plugins": [
+    {
+      "name": "agent-design-patterns",
+      "source": {
+        "source": "local",
+        "path": "./plugins/agent-design-patterns"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

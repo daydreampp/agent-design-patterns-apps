@@ -1,0 +1,16 @@
+{
+  "name": "agent-design-patterns",
+  "owner": {
+    "name": "danzai"
+  },
+  "plugins": [
+    {
+      "name": "agent-design-patterns",
+      "description": "Use the full Agent Design Patterns repository as a Claude Code task preflight and pattern lookup plugin.",
+      "category": "productivity",
+      "source": "./plugins/agent-design-patterns",
+      "homepage": "https://github.com/huangjia2019/agent-design-patterns"
+    }
+  ],
+  "description": "Agent Design Patterns marketplace for Claude Code, bundling the full huangjia2019/agent-design-patterns repository as a task preflight skill."
+}
