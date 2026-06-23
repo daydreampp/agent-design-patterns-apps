@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_URL="${ADPS_APPS_REPO_URL:-https://github.com/YOUR_GITHUB_USERNAME/agent-design-patterns-apps.git}"
+REPO_URL="${ADPS_APPS_REPO_URL:-https://github.com/daydreampp/agent-design-patterns-apps.git}"
 REF="${ADPS_APPS_REF:-main}"
 INSTALL_ROOT="${ADPS_APPS_INSTALL_ROOT:-$HOME/.agent-design-patterns-apps}"
 REPO_DIR="$INSTALL_ROOT/repo"
