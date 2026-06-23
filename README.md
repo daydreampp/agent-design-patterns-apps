@@ -14,8 +14,6 @@ The package keeps one full upstream copy in `shared/agent-design-patterns/` and 
 curl -fsSL https://raw.githubusercontent.com/daydreampp/agent-design-patterns-apps/main/install.sh | bash
 ```
 
-After publishing, replace `YOUR_GITHUB_USERNAME` with the GitHub owner.
-
 ## Local install from a clone
 
 ```bash
