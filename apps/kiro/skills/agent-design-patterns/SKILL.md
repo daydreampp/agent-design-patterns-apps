@@ -1,6 +1,6 @@
 ---
 name: agent-design-patterns
-description: Use the full local huangjia2019/agent-design-patterns repository before starting non-trivial Kiro work. Trigger for ADPS, Agent Design Patterns, task preflight, pattern selection, workflow calibration, debugging strategy, implementation planning, or any task that benefits from selecting agent patterns before execution.
+description: Trigger whenever the user says ADPS, 使用ADPS, 用ADPS, ADPS校准, Agent Design Patterns, or asks for task preflight/pattern selection before Kiro work. Use the full local huangjia2019/agent-design-patterns repository, select the smallest useful pattern set, then execute the task.
 ---
 
 # Agent Design Patterns for Kiro

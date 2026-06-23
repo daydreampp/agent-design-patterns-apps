@@ -1,6 +1,6 @@
 ---
 name: adps-task-calibration
-description: Use the full local huangjia2019/agent-design-patterns repository before starting non-trivial Claude Code work. Trigger when the user asks to use ADPS, Agent Design Patterns, agent-design-patterns, task preflight, pattern selection, workflow calibration, or when a task benefits from choosing agent patterns before execution. Reads the packaged repository and selects the smallest useful pattern set before acting.
+description: Trigger whenever the user says ADPS, 使用ADPS, 用ADPS, ADPS校准, Agent Design Patterns, or asks for task preflight/pattern selection before Claude Code work. Use the full local huangjia2019/agent-design-patterns repository, select the smallest useful pattern set, then execute the task.
 ---
 
 # ADPS Task Calibration

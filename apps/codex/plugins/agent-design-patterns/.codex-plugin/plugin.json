@@ -1,6 +1,6 @@
 {
   "name": "agent-design-patterns",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Full local copy of huangjia2019/agent-design-patterns packaged for Codex task preflight calibration and pattern lookup.",
   "author": {
     "name": "danzai"
@@ -28,9 +28,9 @@
     ],
     "websiteURL": "https://github.com/huangjia2019/agent-design-patterns",
     "defaultPrompt": [
-      "Use ADPS to calibrate this task first.",
-      "Pick agent patterns for this workflow.",
-      "Explain which ADPS pattern applies here."
+      "使用ADPS",
+      "用ADPS先校准这个任务",
+      "ADPS: pick patterns first"
     ],
     "brandColor": "#2563EB"
   }

@@ -1,6 +1,6 @@
 ---
 name: adps-task-calibration
-description: Use the full local huangjia2019/agent-design-patterns repository before starting non-trivial Codex work. Trigger when the user asks to use ADPS, Agent Design Patterns, agent-design-patterns, task preflight, pattern selection, workflow calibration, or when a task benefits from choosing agent patterns before execution. Reads the packaged repository and selects the smallest useful pattern set before acting.
+description: Trigger whenever the user says ADPS, 使用ADPS, 用ADPS, ADPS校准, Agent Design Patterns, or asks for task preflight/pattern selection before Codex work. Use the full local huangjia2019/agent-design-patterns repository, select the smallest useful pattern set, then execute the task.
 ---
 
 # ADPS Task Calibration
@@ -19,7 +19,7 @@ Before acting on any non-trivial task:
 4. **Load** the relevant packaged repository files before using a pattern in detail.
 5. **Execute** in small checkpoints and report what changed, what was verified, and what remains uncertain.
 
-Do not expose a long methodology dump unless the user asks. Give a concise note such as: “我会先用 ADPS 做任务校准，然后执行。”
+Do not expose a long methodology dump unless the user asks. If the user only says “使用ADPS” or “用ADPS”, treat that as a request to run this preflight and continue the task. Give a concise note such as: “我会先用 ADPS 做任务校准，然后执行。”
 
 ## Repository Navigation
 
