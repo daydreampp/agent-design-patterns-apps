@@ -8,6 +8,10 @@ This repository packages the full [`huangjia2019/agent-design-patterns`](https:/
 
 The package keeps one full upstream copy in `shared/agent-design-patterns/` and adds thin adapter layers for each host app.
 
+<!-- upstream-status -->
+
+Upstream `huangjia2019/agent-design-patterns` commit: `15b45b8c688243880947dff587ad61ace0a9e6d3`.
+
 ## One-command install
 
 ```bash
@@ -27,6 +31,24 @@ cd agent-design-patterns-apps
 - Codex: registers this repo as a plugin marketplace and installs `agent-design-patterns`.
 - Claude Code: registers this repo as a plugin marketplace and installs `agent-design-patterns`.
 - Kiro: copies `apps/kiro/skills/agent-design-patterns` into `~/.kiro/skills/agent-design-patterns`.
+
+
+## Updating bundled upstream
+
+The original `huangjia2019/agent-design-patterns` repository can change over time. This package includes an update mechanism:
+
+```bash
+python3 scripts/sync_upstream.py
+```
+
+What it does:
+
+- Clones the latest upstream `main` branch.
+- Refreshes all bundled copies used by Codex, Claude Code, and Kiro.
+- Rebuilds each `repository-map.md` navigation file.
+- Writes the exact upstream commit to `upstream-lock.json`.
+
+GitHub Actions also runs `.github/workflows/sync-upstream.yml` daily and opens a pull request when upstream changes are detected.
 
 ## Usage
 

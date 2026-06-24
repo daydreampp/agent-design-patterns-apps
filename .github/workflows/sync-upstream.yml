@@ -1,0 +1,47 @@
+name: Sync upstream Agent Design Patterns
+
+on:
+  workflow_dispatch:
+    inputs:
+      upstream_ref:
+        description: Upstream ref to sync
+        required: false
+        default: main
+  schedule:
+    - cron: "17 2 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout package repo
+        uses: actions/checkout@v4
+
+      - name: Sync upstream repository copies
+        run: python3 scripts/sync_upstream.py --ref "${{ inputs.upstream_ref || 'main' }}"
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create pull request
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: chore/sync-agent-design-patterns
+          delete-branch: true
+          title: "chore: sync upstream agent-design-patterns"
+          commit-message: "chore: sync upstream agent-design-patterns"
+          body: |
+            Automated upstream sync from huangjia2019/agent-design-patterns.
+
+            Review bundled repository changes and merge when ready.
