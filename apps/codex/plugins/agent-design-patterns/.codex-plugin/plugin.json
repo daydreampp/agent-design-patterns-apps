@@ -1,6 +1,6 @@
 {
   "name": "agent-design-patterns",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Full local copy of huangjia2019/agent-design-patterns packaged for Codex task preflight calibration and pattern lookup.",
   "author": {
     "name": "danzai"

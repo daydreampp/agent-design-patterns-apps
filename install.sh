@@ -53,8 +53,11 @@ if have claude; then
   else
     log "Claude marketplace may already be registered; continuing."
   fi
+  if claude plugin list 2>/dev/null | grep -q "agent-design-patterns@agent-design-patterns"; then
+    claude plugin uninstall agent-design-patterns >/dev/null 2>&1 || true
+  fi
   if claude plugin install agent-design-patterns@agent-design-patterns --scope user >/dev/null 2>&1; then
-    log "Installed Claude Code plugin agent-design-patterns."
+    log "Installed or updated Claude Code plugin agent-design-patterns."
   else
     log "Claude plugin install may already be present; continuing."
   fi

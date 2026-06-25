@@ -84,17 +84,57 @@ def build_repository_map(repo: Path, upstream_commit: str) -> str:
     return "\n".join(lines).rstrip() + "\n"
 
 
-def write_metadata(root: Path, upstream_ref: str, upstream_commit: str) -> None:
+def write_metadata(root: Path, upstream_ref: str, upstream_commit: str) -> bool:
+    lock_path = root / "upstream-lock.json"
+    previous = {}
+    if lock_path.exists():
+        try:
+            previous = json.loads(lock_path.read_text())
+        except json.JSONDecodeError:
+            previous = {}
+    previous_upstream = previous.get("upstream", {})
+    upstream_changed = previous_upstream.get("commit") != upstream_commit or previous_upstream.get("ref") != upstream_ref
+    if upstream_changed:
+        synced_at = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+    else:
+        synced_at = previous_upstream.get("synced_at")
     metadata = {
         "upstream": {
             "url": UPSTREAM_URL,
             "ref": upstream_ref,
             "commit": upstream_commit,
-            "synced_at": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
+            "synced_at": synced_at,
         },
         "copies": [str(path) for path in REPO_COPIES],
     }
-    (root / "upstream-lock.json").write_text(json.dumps(metadata, indent=2, ensure_ascii=False) + "\n")
+    lock_path.write_text(json.dumps(metadata, indent=2, ensure_ascii=False) + "\n")
+    return upstream_changed
+
+
+def bump_patch_version(version: str) -> str:
+    parts = version.split(".")
+    if len(parts) != 3 or not all(part.isdigit() for part in parts):
+        raise ValueError(f"Unsupported plugin version: {version}")
+    major, minor, patch = map(int, parts)
+    return f"{major}.{minor}.{patch + 1}"
+
+
+def update_plugin_versions(root: Path, upstream_changed: bool) -> None:
+    if not upstream_changed:
+        return
+    manifest_paths = [
+        root / "apps/codex/plugins/agent-design-patterns/.codex-plugin/plugin.json",
+        root / "apps/claude/plugins/agent-design-patterns/.claude-plugin/plugin.json",
+    ]
+    versions = []
+    for path in manifest_paths:
+        data = json.loads(path.read_text())
+        versions.append(data["version"])
+    next_version = bump_patch_version(max(versions, key=lambda item: tuple(map(int, item.split(".")))))
+    for path in manifest_paths:
+        data = json.loads(path.read_text())
+        data["version"] = next_version
+        path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
 
 
 def update_readme_badge(root: Path, upstream_commit: str) -> None:
@@ -133,7 +173,8 @@ def main() -> None:
             target = root / rel
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(repo_map)
-        write_metadata(root, args.ref, upstream_commit)
+        upstream_changed = write_metadata(root, args.ref, upstream_commit)
+        update_plugin_versions(root, upstream_changed)
         update_readme_badge(root, upstream_commit)
         print(upstream_commit)
 
