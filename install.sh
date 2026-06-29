@@ -29,22 +29,56 @@ else
 fi
 
 CODEX_MARKETPLACE="$REPO_DIR/apps/codex"
+CODEX_PLUGIN_SRC="$REPO_DIR/apps/codex/plugins/agent-design-patterns"
 CLAUDE_MARKETPLACE="$REPO_DIR/apps/claude"
 KIRO_SKILL_SRC="$REPO_DIR/apps/kiro/skills/agent-design-patterns"
 
+install_codex_desktop_fallback() {
+  local manifest="$CODEX_PLUGIN_SRC/.codex-plugin/plugin.json"
+  if [ ! -f "$manifest" ]; then
+    log "Codex plugin source not found; skipped Codex Desktop fallback."
+    return 1
+  fi
+
+  local version
+  version="$(sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' "$manifest" | head -n 1)"
+  if [ -z "$version" ]; then
+    log "Could not read Codex plugin version; skipped Codex Desktop fallback."
+    return 1
+  fi
+
+  local codex_home="${CODEX_HOME:-$HOME/.codex}"
+  local package_root="$codex_home/plugins/cache/agent-design-patterns/agent-design-patterns"
+  local target="$package_root/$version"
+
+  rm -rf "$package_root"
+  mkdir -p "$package_root"
+  cp -R "$CODEX_PLUGIN_SRC" "$target"
+  log "Installed Codex Desktop fallback plugin files at $target."
+  log "Restart Codex App to load the plugin if it was already open."
+}
+
 if have codex; then
+  codex_registered=false
   if codex plugin marketplace add "$CODEX_MARKETPLACE" >/dev/null 2>&1; then
     log "Registered Codex marketplace."
+    codex_registered=true
   else
     log "Codex marketplace may already be registered; continuing."
   fi
   if codex plugin add agent-design-patterns@agent-design-patterns >/dev/null 2>&1; then
     log "Installed Codex plugin agent-design-patterns."
+    codex_registered=true
   else
     log "Codex plugin install may already be present; continuing."
   fi
+  if [ "$codex_registered" = false ]; then
+    log "Codex CLI registration did not report success; trying Codex Desktop fallback."
+    install_codex_desktop_fallback || true
+  fi
 else
-  log "Codex CLI not found; skipped Codex App plugin registration."
+  log "Codex CLI not found; using Codex Desktop fallback file install."
+  install_codex_desktop_fallback || true
 fi
 
 if have claude; then

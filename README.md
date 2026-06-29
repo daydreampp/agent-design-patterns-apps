@@ -28,9 +28,11 @@ cd agent-design-patterns-apps
 
 ## What gets installed
 
-- Codex: registers this repo as a plugin marketplace and installs `agent-design-patterns`.
+- Codex: registers this repo as a plugin marketplace and installs `agent-design-patterns` when the `codex` CLI is available. If the CLI is not in `PATH`, the installer copies the plugin into the Codex Desktop cache under `~/.codex/plugins/cache/agent-design-patterns/agent-design-patterns/<version>/` and asks you to restart Codex App.
 - Claude Code: registers this repo as a plugin marketplace and installs `agent-design-patterns`.
 - Kiro: copies `apps/kiro/skills/agent-design-patterns` into `~/.kiro/skills/agent-design-patterns`.
+
+If Codex Desktop still does not show the ADPS skill after restart, install or expose the Codex CLI and rerun `./install.sh` so the marketplace can be registered through the official command path.
 
 
 ## Updating bundled upstream
