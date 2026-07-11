@@ -1,7 +1,7 @@
 # Packaged Repository Map
 
 Source: https://github.com/huangjia2019/agent-design-patterns
-Upstream commit: `4620664c8ecba9374ec3d34146454837ff748795`
+Upstream commit: `3b562b103d9ec303d945609c2294f71c8557dc97`
 
 ## Root Files
 
@@ -38,6 +38,7 @@ Upstream commit: `4620664c8ecba9374ec3d34146454837ff748795`
 - `action/b-plan-and-execute/` — README.zh-CN.md, README.md, pattern.py, example.py, test_pattern.py
 - `action/c-prompt-chaining/` — README.zh-CN.md, README.md, pattern.py, example.py, test_pattern.py
 - `action/d-guardrail-sandwich/` — README.zh-CN.md, README.md, pattern.py, example.py, test_pattern.py
+- `action/payroll-lab/` — README.zh-CN.md, README.md
 
 ### `reflection/`
 - `reflection/a-generator-critic/` — README.zh-CN.md, README.md
