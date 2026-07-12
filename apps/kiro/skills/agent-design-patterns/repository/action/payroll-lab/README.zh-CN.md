@@ -35,9 +35,9 @@ python3 naked_loop.py         # 看它眼都不眨地写进去
 |:--|:--|:--|
 | 21 导论 | 裸奔的 PRA 循环 + ActionTrace 观测层 | 本目录 `naked_loop.py` / `action_trace.py` |
 | 22 工具调度 | Action × Router | 本目录 `tool_dispatch_lab.py`（薪酬版五场景）+ 模式本体 [`../a-tool-dispatch/`](../a-tool-dispatch/) |
-| 23 规划执行 | Action × Orchestration | [`../b-plan-and-execute/`](../b-plan-and-execute/) |
-| 24 提示链 | Action × Chain | [`../c-prompt-chaining/`](../c-prompt-chaining/) |
-| 25 守卫三明治 | Action × Hierarchy | [`../d-guardrail-sandwich/`](../d-guardrail-sandwich/) |
+| 23 规划执行 | Action × Orchestration | 本目录 `plan_execute_lab.py`（800 人打款 DAG 四幕）+ 模式本体 [`../b-plan-and-execute/`](../b-plan-and-execute/) |
+| 24 提示链 | Action × Chain | 本目录 `prompt_chain_lab.py`（打款链两轮对照：有闸/裸闸）+ 模式本体 [`../c-prompt-chaining/`](../c-prompt-chaining/) |
+| 25 守卫三明治 | Action × Hierarchy | 本目录 `guardrail_lab.py`（转账夹进三明治，六场景）+ 模式本体 [`../d-guardrail-sandwich/`](../d-guardrail-sandwich/) |
 
 每讲动手环节固定五步：克隆、跑起来、看输出、改一处、再跑。
 
@@ -47,5 +47,8 @@ python3 naked_loop.py         # 看它眼都不眨地写进去
 - `naked_loop.py` — 50 行上下、无护栏的感知-推理-行动循环（反面教材，故意的）
 - `action_trace.py` — 行动模块共用的观测层：四个生产指标 + 健康检查（`python3 action_trace.py` 可看 scope-creep 报警的演示）
 - `tool_dispatch_lab.py` — 第 22 讲动手环节：把转账、冲正、查工资条、改银行账号四个工具挂上元数据，跑五个场景（工具臆造 / 过期状态 / 重复打款 / 审批门 / saga 冲正），第 21 讲那个"顺手改账号"在场景四被当场拦下
+- `plan_execute_lab.py` — 第 23 讲动手环节：800 人打款排成一张 DAG 计划，四幕剧本（财务审批 → 批次 b3 银行超时失败、已成批次不动 → 局部重排只补 b3 → 对账人审放行）
+- `prompt_chain_lab.py` — 第 24 讲动手环节：结算→对账→生成指令→打款申请书四段链，mock 模型在生成指令时手抄总额抄串两位数字，第一轮校验闸当场拦下重试通过，第二轮把闸门放松成"非空"，27 万元的差额一路流进打款申请书且每段都报成功
+- `guardrail_lab.py` — 第 25 讲动手环节：把转账夹进守卫三明治，六个场景（正常放行 / 21 讲那笔 999999 在前置层被摁住、工具压根没跑 / 风控冻结账户前置拦 / 银行没回执后置拦并标记冲正 / 单步全合规的组合式数据外泄被 PII 后置闸拦下 / 更严阈值以 shadow 模式陪跑只记不拦）
 
 表结构四张：`employees`（员工与银行账号）、`payroll`（月度工资单）、`approvals`（审批单）、`policies`（政策版本）。

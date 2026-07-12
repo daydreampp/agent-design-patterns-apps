@@ -1,7 +1,7 @@
 # Packaged Repository Map
 
 Source: https://github.com/huangjia2019/agent-design-patterns
-Upstream commit: `3b562b103d9ec303d945609c2294f71c8557dc97`
+Upstream commit: `b0792f75c50d9bb5c9f8ccc09fb0d817c10ade18`
 
 ## Root Files
 
@@ -45,6 +45,7 @@ Upstream commit: `3b562b103d9ec303d945609c2294f71c8557dc97`
 - `reflection/b-skill-package/` — README.zh-CN.md, README.md
 - `reflection/c-experience-replay/` — README.zh-CN.md, README.md
 - `reflection/d-self-heal-loop/` — README.zh-CN.md, README.md
+- `reflection/payroll-lab/` — README.zh-CN.md, README.md
 
 ### `collaboration/`
 - `collaboration/a-hierarchical-delegation/` — README.zh-CN.md, README.md, pattern.py, example.py, test_pattern.py
