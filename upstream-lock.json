@@ -2,8 +2,8 @@
   "upstream": {
     "url": "https://github.com/huangjia2019/agent-design-patterns.git",
     "ref": "main",
-    "commit": "b0792f75c50d9bb5c9f8ccc09fb0d817c10ade18",
-    "synced_at": "2026-07-12T05:37:45Z"
+    "commit": "ff0e955e5964bfdea24a518dbda933428b967c1f",
+    "synced_at": "2026-07-13T05:48:16Z"
   },
   "copies": [
     "shared/agent-design-patterns",

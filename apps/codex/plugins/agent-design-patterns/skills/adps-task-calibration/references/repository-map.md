@@ -1,7 +1,7 @@
 # Packaged Repository Map
 
 Source: https://github.com/huangjia2019/agent-design-patterns
-Upstream commit: `b0792f75c50d9bb5c9f8ccc09fb0d817c10ade18`
+Upstream commit: `ff0e955e5964bfdea24a518dbda933428b967c1f`
 
 ## Root Files
 
@@ -41,10 +41,10 @@ Upstream commit: `b0792f75c50d9bb5c9f8ccc09fb0d817c10ade18`
 - `action/payroll-lab/` — README.zh-CN.md, README.md
 
 ### `reflection/`
-- `reflection/a-generator-critic/` — README.zh-CN.md, README.md
-- `reflection/b-skill-package/` — README.zh-CN.md, README.md
-- `reflection/c-experience-replay/` — README.zh-CN.md, README.md
-- `reflection/d-self-heal-loop/` — README.zh-CN.md, README.md
+- `reflection/a-generator-critic/` — README.zh-CN.md, README.md, pattern.py
+- `reflection/b-skill-package/` — README.zh-CN.md, README.md, pattern.py
+- `reflection/c-experience-replay/` — README.zh-CN.md, README.md, pattern.py
+- `reflection/d-self-heal-loop/` — README.zh-CN.md, README.md, pattern.py
 - `reflection/payroll-lab/` — README.zh-CN.md, README.md
 
 ### `collaboration/`
