@@ -1,7 +1,7 @@
 # Packaged Repository Map
 
 Source: https://github.com/huangjia2019/agent-design-patterns
-Upstream commit: `a4636c66915ecd76cce8c21583bd0f4de452eb96`
+Upstream commit: `bce9076264e2a3d1260b497ebaf109bd975a5705`
 
 ## Root Files
 
@@ -41,10 +41,10 @@ Upstream commit: `a4636c66915ecd76cce8c21583bd0f4de452eb96`
 - `action/payroll-lab/` — README.zh-CN.md, README.md
 
 ### `reflection/`
-- `reflection/a-generator-critic/` — README.zh-CN.md, README.md, pattern.py
-- `reflection/b-skill-package/` — README.zh-CN.md, README.md, pattern.py
-- `reflection/c-experience-replay/` — README.zh-CN.md, README.md, pattern.py
-- `reflection/d-self-heal-loop/` — README.zh-CN.md, README.md, pattern.py
+- `reflection/a-generator-critic/` — README.zh-CN.md, README.md, pattern.py, example.py, test_pattern.py
+- `reflection/b-skill-package/` — README.zh-CN.md, README.md, pattern.py, test_pattern.py
+- `reflection/c-experience-replay/` — README.zh-CN.md, README.md, pattern.py, test_pattern.py
+- `reflection/d-self-heal-loop/` — README.zh-CN.md, README.md, pattern.py, test_pattern.py
 - `reflection/payroll-lab/` — README.zh-CN.md, README.md
 
 ### `collaboration/`
@@ -52,6 +52,7 @@ Upstream commit: `a4636c66915ecd76cce8c21583bd0f4de452eb96`
 - `collaboration/b-fan-out-gather/` — README.zh-CN.md, README.md, pattern.py, example.py, test_pattern.py
 - `collaboration/c-adversarial-review/` — README.zh-CN.md, README.md, pattern.py, example.py, test_pattern.py
 - `collaboration/d-handoff-chain/` — README.zh-CN.md, README.md, pattern.py, example.py, test_pattern.py
+- `collaboration/payroll-lab/` — README files
 
 ### `governance/`
 - `governance/a-approval-gate/` — README.zh-CN.md, README.md
