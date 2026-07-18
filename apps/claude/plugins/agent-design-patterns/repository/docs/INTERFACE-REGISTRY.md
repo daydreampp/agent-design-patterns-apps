@@ -7,7 +7,7 @@
 >
 > **Citation discipline**: course lectures, whitepapers, and book chapters that quote an interface must pin the commit (`pattern.py@<hash>` in the document header). Interfaces do refactor; a pinned quote stays honest, an unpinned one rots.
 
-Generated 2026-07-17 at HEAD `594304a` (working tree has uncommitted changes).
+Generated 2026-07-17 at HEAD `d5e77ae` (working tree has uncommitted changes).
 
 ## Summary
 
@@ -28,15 +28,15 @@ Generated 2026-07-17 at HEAD `594304a` (working tree has uncommitted changes).
 | A1 工具调度 Tool Dispatch | 行动 × 路由 | `ToolDispatcher` | 05-19 |
 | A2 规划执行 Plan-and-Execute | 行动 × 编排 | `Executor` | 07-16 |
 | A3 提示链 Prompt Chaining | 行动 × 链式 | `PromptChain` | 07-16 |
-| A4 守卫三明治 Guardrail Sandwich | 行动 × 层级 | `GuardrailSandwich` | 07-16 |
+| A4 护栏三明治 Guardrail Sandwich | 行动 × 层级 | `GuardrailSandwich` | 07-16 |
 | F1 生成批评 Generator-Critic | 反思 × 链式 | `GeneratorCriticChain` | 07-17 |
 | F2 技能包 Skill Package | 反思 × 路由 | `SkillLibrary` | 07-17 |
 | F3 经验回放 Experience Replay | 反思 × 层级 | `ExperienceStore` | 07-17 |
 | F4 自愈循环 Self-Heal Loop | 反思 × 循环 | `SelfHealLoop` | 07-17 |
 | C1 层级委派 Hierarchical Delegation | 协作 × 层级 | `SettlementSupervisor` | 07-17 |
-| C2 扇出聚合 Fan-out / Gather | 协作 × 并行 | `FanOutGather` | 07-01 |
-| C3 对抗评审 Adversarial Review | 协作 × 循环 | `AdversarialReview` | 07-01 |
-| C4 交接链 Handoff Chain | 协作 × 链式 | `HandoffChain` | 07-01 |
+| C2 扇出聚合 Fan-out / Gather | 协作 × 并行 | `FanOutGather` | 07-17 |
+| C3 对抗评审 Adversarial Review | 协作 × 循环 | `AdversarialReview` | 07-17 |
+| C4 交接链 Handoff Chain | 协作 × 链式 | `HandoffChain` | 07-17 |
 | Shared 协作边界契约 Collaboration Boundary Contract | 协作横切接口 | `TaskContract` → `AcceptanceReceipt` | 07-17 |
 | G1 审批门 Approval Gate | 治理 × 路由 | README only | no impl |
 | G2 爆炸半径控制 Blast Radius Control | 治理 × 层级 | README only | no impl |
@@ -214,7 +214,7 @@ Generated 2026-07-17 at HEAD `594304a` (working tree has uncommitted changes).
   - access to all *prior* outputs (not just the immediately previous
   - tolerable* outputs, not perfect ones; the retry budget is the
 
-### A4 守卫三明治 Guardrail Sandwich — `action/d-guardrail-sandwich/`
+### A4 护栏三明治 Guardrail Sandwich — `action/d-guardrail-sandwich/`
 
 - **Coordinate**: 行动 × 层级
 - **State**: `pattern.py` 406 lines · last commit d7932e8 2026-07-16 · clean · tests: yes
@@ -298,47 +298,43 @@ Generated 2026-07-17 at HEAD `594304a` (working tree has uncommitted changes).
 ### C2 扇出聚合 Fan-out / Gather — `collaboration/b-fan-out-gather/`
 
 - **Coordinate**: 协作 × 并行
-- **State**: `pattern.py` 214 lines · last commit ee22a46 2026-07-01 · clean · tests: yes
-- **Summary**: Fan-out-Gather pattern.
-- **Public API**: `Strategy` *enum*; `Layer` *enum*; `SourceResult` *dataclass*; `AggregatorPolicy` *dataclass*; `LineItemVerdict` *dataclass*; `Reconciler` *class*(reconcile); `FanOutGather` *class*(run)
+- **State**: `pattern.py` 851 lines · last commit 8aa5a33 2026-07-17 · clean · tests: yes
+- **Summary**: Fan-out / Gather pattern.
+- **Public API**: `Strategy` *enum*; `Layer` *enum*; `ContributionRule` *enum*; `ReconciliationStatus` *enum*; `Tolerance` *dataclass*(matches); `SourceSpec` *dataclass*; `SourceResult` *dataclass*(from_mapping, ok, values); `ConflictResolution` *dataclass*; `LineItemVerdict` *dataclass*(values); `MergedItem` *dataclass*; `ReconciliationReport` *dataclass*(agreed_items, attributable_divergences, to_human, merged, total); `AggregatorPolicy` *dataclass*; `SourceAdmissionPolicy` *dataclass*(evaluate); `Reconciler` *class*(reconcile); `AggregationBoundary` *dataclass*(evaluate); `AggregationRun` *dataclass*(report); `FanOutGather` *class*(handoff_for, run)
+- **Module functions**: `bind_source_result`
 - **Contract lines (from docstring)**:
-  - Like the sibling patterns this file is small (~150 lines) and is not a framework.
-  - real agents into the same shape; the reconciler under test never changes.
-  - bound to an *attributable* boundary (one data source), the workers'
-  - divergence stops being noise and becomes a locator: agree -> not here;
-  - that does not -> human review. Encoded in :meth:`Reconciler.reconcile`.
+  - Every source must return a contract-bound artifact.
+  - The gather must apply explicit comparison or contribution semantics.
 
 ### C3 对抗评审 Adversarial Review — `collaboration/c-adversarial-review/`
 
 - **Coordinate**: 协作 × 循环
-- **State**: `pattern.py` 147 lines · last commit d9fa352 2026-07-01 · clean · tests: yes
+- **State**: `pattern.py` 648 lines · last commit a06e6e3 2026-07-17 · clean · tests: yes
 - **Summary**: Adversarial Review pattern.
-- **Public API**: `Severity` *enum*; `Outcome` *enum*; `Itinerary` *dataclass*; `Objection` *dataclass*; `IndependenceGuard` *class*(check); `ReviewGate` *class*(open_blockers, may_confirm); `AdversarialReview` *class*(run)
+- **Public API**: `Outcome` *enum*; `Objection` *dataclass*; `ReviewPolicy` *dataclass*; `ReviewRequest` *dataclass*; `ReviewFn` *class*; `ReviseFn` *class*; `ReviewerSpec` *dataclass*; `ReviserSpec` *dataclass*; `ReviewerFailure` *dataclass*; `ReviewReceipt` *dataclass*(blockers, complete); `ReviewPanel` *dataclass*(review); `IndependenceGuard` *dataclass*(evaluate); `ReviewGate` *dataclass*(may_confirm); `ReviewRound` *dataclass*; `ReviewRun` *dataclass*(latest_review); `AdversarialReview` *class*(run)
 - **Contract lines (from docstring)**:
-  - purpose only: to attack it. Not to help write it, not to co-sign it — to find the
-  - Like the sibling patterns this file is small (~150 lines) and is not a framework.
-  - **The Three Isolations of Independence** (独立性三隔离) — a reviewer is only
-  - plan, not the planner's private reasoning), *objective* (its job is to find
-  - blockers, not to approve), and *identity* (a different agent, not the same one
-  - **Objections, never endorsement** (只提异议不背书) — the reviewer returns a list
-  - decided by a deterministic :class:`ReviewGate` (zero open blockers), never by the
-- **Note**: Interface is single-round (run once, gate decides); the canonical coordinate 协作 × 循环 refers to the review-revise cycle owned by the outer workflow, mirroring how Generator-Critic keeps its loop outside the interface.
+  - A candidate artifact crosses a release boundary only after independent reviewers
+  - return machine-readable objections against a versioned rubric. Reviewers must
+  - return objections, never endorsement. A deterministic gate combines declared
+  - This module owns the loop topology: review the current artifact, revise only
+  - version. The final round never creates an unreviewed replacement artifact.
+- **Note**: The interface owns a bounded review-revise-review loop. Each round produces a ReviewReceipt bound to the current artifact fingerprint and rubric version; the final round cannot create an unreviewed replacement artifact.
 
 ### C4 交接链 Handoff Chain — `collaboration/d-handoff-chain/`
 
 - **Coordinate**: 协作 × 链式
-- **State**: `pattern.py` 123 lines · last commit 4620664 2026-07-01 · clean · tests: yes
+- **State**: `pattern.py` 635 lines · last commit de5e297 2026-07-17 · clean · tests: yes
 - **Summary**: Handoff Chain pattern.
-- **Public API**: `SeamError` *class*; `Baton` *dataclass*; `StageSpec` *dataclass*; `HandoffChain` *class*(run)
-- **Module functions**: `trip_chain`
+- **Public API**: `SeamError` *class*; `FactValue` *dataclass*; `FactRule` *dataclass*; `FactRecord` *dataclass*(value); `Baton` *dataclass*(facts, fact_record, fingerprint, snapshot_id); `BatonView` *dataclass*; `StageSpec` *dataclass*; `StageDelta` *dataclass*; `StageFn` *class*; `StageBinding` *dataclass*; `StageReceipt` *dataclass*; `ChainRun` *dataclass*; `HandoffChain` *class*(run, advance)
+- **Module functions**: `new_baton`
 - **Contract lines (from docstring)**:
-  - one stage and passing a baton to the next. Not a tree (that is Hierarchical
-  - Delegation), not parallel copies (that is Fan-out-Gather) — a line.
-  - Like the sibling patterns this file is small (~140 lines) and is not a framework.
-  - not three stages downstream where the cause is lost.
-  - **Append-only baton** (棒上不回改) — the intent and committed facts are locked once
-  - set. A later stage may add, never silently overwrite. A handoff passes values, not
-  - a shared mutable scratchpad, so one stage cannot quietly rewrite what an earlier
+  - read-only snapshot, consumes declared facts, and returns a typed delta. The chain
+  - The shared collaboration boundary remains:
+  - The pattern owns five invariants:
+  - a stage must receive every fact it declares in ``requires``;
+  - a stage must itself deliver every fact it declares in ``provides``;
+  - one fact has one declared producer and committed facts are append-only;
+  - values cross the seam only after type, evidence, and semantic validation;
 
 ### Shared 协作边界契约 Collaboration Boundary Contract
 

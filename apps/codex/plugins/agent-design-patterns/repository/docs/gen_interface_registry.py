@@ -42,7 +42,7 @@ COORDINATES: dict[str, tuple[str, str, str, str]] = {
     "action/a-tool-dispatch": ("A1", "工具调度", "Tool Dispatch", "行动 × 路由"),
     "action/b-plan-and-execute": ("A2", "规划执行", "Plan-and-Execute", "行动 × 编排"),
     "action/c-prompt-chaining": ("A3", "提示链", "Prompt Chaining", "行动 × 链式"),
-    "action/d-guardrail-sandwich": ("A4", "守卫三明治", "Guardrail Sandwich", "行动 × 层级"),
+    "action/d-guardrail-sandwich": ("A4", "护栏三明治", "Guardrail Sandwich", "行动 × 层级"),
     "reflection/a-generator-critic": ("F1", "生成批评", "Generator-Critic", "反思 × 链式"),
     "reflection/b-skill-package": ("F2", "技能包", "Skill Package", "反思 × 路由"),
     "reflection/c-experience-replay": ("F3", "经验回放", "Experience Replay", "反思 × 层级"),
@@ -75,10 +75,10 @@ NOTES: dict[str, str] = {
         "2026-07-16: core patterns hold 1-4 per row, extensions start at 5.)"
     ),
     "collaboration/c-adversarial-review": (
-        "Interface is single-round (run once, gate decides); the canonical "
-        "coordinate 协作 × 循环 refers to the review-revise cycle owned by "
-        "the outer workflow, mirroring how Generator-Critic keeps its loop "
-        "outside the interface."
+        "The interface owns a bounded review-revise-review loop. Each round "
+        "produces a ReviewReceipt bound to the current artifact fingerprint "
+        "and rubric version; the final round cannot create an unreviewed "
+        "replacement artifact."
     ),
 }
 
