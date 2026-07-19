@@ -10,7 +10,7 @@ The package keeps one full upstream copy in `shared/agent-design-patterns/` and 
 
 <!-- upstream-status -->
 
-Upstream `huangjia2019/agent-design-patterns` commit: `7a9cfa05b1740ce22e91a809c230eacdb364f522`.
+Upstream `huangjia2019/agent-design-patterns` commit: `c5dd024531a03b388471bd3e6db5025fc086bc1d`.
 
 ## One-command install
 

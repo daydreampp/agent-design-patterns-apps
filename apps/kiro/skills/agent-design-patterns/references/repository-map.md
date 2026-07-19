@@ -1,7 +1,7 @@
 # Packaged Repository Map
 
 Source: https://github.com/huangjia2019/agent-design-patterns
-Upstream commit: `7a9cfa05b1740ce22e91a809c230eacdb364f522`
+Upstream commit: `c5dd024531a03b388471bd3e6db5025fc086bc1d`
 
 ## Root Files
 
@@ -59,6 +59,7 @@ Upstream commit: `7a9cfa05b1740ce22e91a809c230eacdb364f522`
 - `governance/b-blast-radius/` — README.zh-CN.md, README.md
 - `governance/c-progressive-commitment/` — README.zh-CN.md, README.md
 - `governance/d-observability-harness/` — README.zh-CN.md, README.md
+- `governance/payroll-lab/` — README files
 
 ### `composition/`
 - `composition/a-pattern-selection-card/` — README.zh-CN.md, README.md
