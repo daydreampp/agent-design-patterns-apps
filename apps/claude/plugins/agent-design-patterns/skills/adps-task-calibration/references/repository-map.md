@@ -1,7 +1,7 @@
 # Packaged Repository Map
 
 Source: https://github.com/huangjia2019/agent-design-patterns
-Upstream commit: `c5dd024531a03b388471bd3e6db5025fc086bc1d`
+Upstream commit: `162bef681d7c75cc76e58610dbe4bc80d8a8cead`
 
 ## Root Files
 
@@ -55,14 +55,15 @@ Upstream commit: `c5dd024531a03b388471bd3e6db5025fc086bc1d`
 - `collaboration/payroll-lab/` — README files
 
 ### `governance/`
-- `governance/a-approval-gate/` — README.zh-CN.md, README.md
-- `governance/b-blast-radius/` — README.zh-CN.md, README.md
-- `governance/c-progressive-commitment/` — README.zh-CN.md, README.md
-- `governance/d-observability-harness/` — README.zh-CN.md, README.md
-- `governance/payroll-lab/` — README files
+- `governance/a-approval-gate/` — README.zh-CN.md, README.md, pattern.py, example.py, test_pattern.py
+- `governance/b-blast-radius/` — README.zh-CN.md, README.md, pattern.py, example.py, test_pattern.py
+- `governance/c-progressive-commitment/` — README.zh-CN.md, README.md, pattern.py, example.py, test_pattern.py
+- `governance/d-observability-harness/` — README.zh-CN.md, README.md, pattern.py, example.py, test_pattern.py
+- `governance/payroll-lab/` — README.zh-CN.md, README.md
 
 ### `composition/`
-- `composition/a-pattern-selection-card/` — README.zh-CN.md, README.md
+- `composition/a-pattern-selection-card/` — README.zh-CN.md, README.md, pattern.py, example.py, test_pattern.py
 - `composition/b-six-step-methodology/` — README.zh-CN.md, README.md
 - `composition/c-argus-full-case/` — README.zh-CN.md, README.md
 - `composition/d-checklist-benchmark/` — README.zh-CN.md, README.md, checklist_benchmark.ipynb
+- `composition/payroll-lab/` — README.zh-CN.md, README.md
