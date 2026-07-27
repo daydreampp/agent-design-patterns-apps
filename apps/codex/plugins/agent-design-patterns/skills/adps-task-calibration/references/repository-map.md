@@ -1,7 +1,7 @@
 # Packaged Repository Map
 
 Source: https://github.com/huangjia2019/agent-design-patterns
-Upstream commit: `162bef681d7c75cc76e58610dbe4bc80d8a8cead`
+Upstream commit: `a0634e0c04def66f7b2bc633e66004577bb4f46e`
 
 ## Root Files
 
@@ -63,7 +63,7 @@ Upstream commit: `162bef681d7c75cc76e58610dbe4bc80d8a8cead`
 
 ### `composition/`
 - `composition/a-pattern-selection-card/` — README.zh-CN.md, README.md, pattern.py, example.py, test_pattern.py
-- `composition/b-six-step-methodology/` — README.zh-CN.md, README.md
-- `composition/c-argus-full-case/` — README.zh-CN.md, README.md
+- `composition/b-six-step-methodology/` — README.zh-CN.md, README.md, pattern.py, example.py, test_pattern.py
+- `composition/c-argus-full-case/` — README.zh-CN.md, README.md, pattern.py, example.py, test_pattern.py
 - `composition/d-checklist-benchmark/` — README.zh-CN.md, README.md, checklist_benchmark.ipynb
 - `composition/payroll-lab/` — README.zh-CN.md, README.md

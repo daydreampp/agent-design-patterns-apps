@@ -20,7 +20,15 @@ HERE = Path(__file__).parent
 UI = HERE / "ui"
 sys.path.insert(0, str(HERE))
 
-from ui_service import LabBusy, meta, run  # noqa: E402
+from ui_service import (  # noqa: E402
+    LabBusy,
+    capstone_meta,
+    meta,
+    run,
+    run_capstone_workbench,
+    run_six_step,
+    six_step_meta,
+)
 
 
 app = FastAPI(
@@ -36,9 +44,29 @@ async def index() -> FileResponse:
     return FileResponse(UI / "index.html")
 
 
+@app.get("/42", include_in_schema=False)
+async def six_step_index() -> FileResponse:
+    return FileResponse(UI / "six-step.html")
+
+
+@app.get("/43", include_in_schema=False)
+async def capstone_index() -> FileResponse:
+    return FileResponse(UI / "capstone.html")
+
+
 @app.get("/api/meta")
 async def get_meta() -> dict:
     return meta()
+
+
+@app.get("/api/42/meta")
+async def get_six_step_meta() -> dict:
+    return six_step_meta()
+
+
+@app.get("/api/43/meta")
+async def get_capstone_meta() -> dict:
+    return capstone_meta()
 
 
 @app.get("/api/state")
@@ -55,6 +83,42 @@ async def run_experiment(scenario: str) -> dict:
         return await run_in_threadpool(run, scenario)
     except KeyError as error:
         raise HTTPException(status_code=404, detail="unknown scenario") from error
+    except LabBusy as error:
+        raise HTTPException(status_code=409, detail=str(error)) from error
+
+
+@app.get("/api/42/state")
+async def six_step_state(view: str = "seams") -> dict:
+    try:
+        return await run_in_threadpool(run_six_step, view)
+    except KeyError as error:
+        raise HTTPException(status_code=404, detail="unknown view") from error
+
+
+@app.post("/api/42/run/{view}")
+async def run_six_step_experiment(view: str) -> dict:
+    try:
+        return await run_in_threadpool(run_six_step, view)
+    except KeyError as error:
+        raise HTTPException(status_code=404, detail="unknown view") from error
+    except LabBusy as error:
+        raise HTTPException(status_code=409, detail=str(error)) from error
+
+
+@app.get("/api/43/state")
+async def capstone_state(mode: str = "bound") -> dict:
+    try:
+        return await run_in_threadpool(run_capstone_workbench, mode)
+    except KeyError as error:
+        raise HTTPException(status_code=404, detail="unknown mode") from error
+
+
+@app.post("/api/43/run/{mode}")
+async def run_capstone_experiment(mode: str) -> dict:
+    try:
+        return await run_in_threadpool(run_capstone_workbench, mode)
+    except KeyError as error:
+        raise HTTPException(status_code=404, detail="unknown mode") from error
     except LabBusy as error:
         raise HTTPException(status_code=409, detail=str(error)) from error
 
