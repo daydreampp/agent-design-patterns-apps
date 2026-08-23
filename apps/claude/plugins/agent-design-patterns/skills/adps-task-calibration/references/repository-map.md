@@ -1,7 +1,7 @@
 # Packaged Repository Map
 
 Source: https://github.com/huangjia2019/agent-design-patterns
-Upstream commit: `1a890806f969b3b6700bb093f1f2e119151189bc`
+Upstream commit: `54ee821a192d385adc085797c59bb09b1930f732`
 
 ## Root Files
 
@@ -52,6 +52,7 @@ Upstream commit: `1a890806f969b3b6700bb093f1f2e119151189bc`
 - `collaboration/b-fan-out-gather/` — README.zh-CN.md, README.md, pattern.py, example.py, test_pattern.py
 - `collaboration/c-adversarial-review/` — README.zh-CN.md, README.md, pattern.py, example.py, test_pattern.py
 - `collaboration/d-handoff-chain/` — README.zh-CN.md, README.md, pattern.py, example.py, test_pattern.py
+- `collaboration/light_labs/` — README.zh-CN.md, README.md
 - `collaboration/payroll-lab/` — README files
 
 ### `governance/`
