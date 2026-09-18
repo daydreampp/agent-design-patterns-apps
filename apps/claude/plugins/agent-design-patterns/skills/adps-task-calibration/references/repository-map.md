@@ -1,7 +1,7 @@
 # Packaged Repository Map
 
 Source: https://github.com/huangjia2019/agent-design-patterns
-Upstream commit: `32fff16aecb70eaf770081f58cee62f9a098e033`
+Upstream commit: `8f5113b3e253d088803ad7497b6e703c0ec0e3a6`
 
 ## Root Files
 
